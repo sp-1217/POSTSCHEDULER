@@ -1,0 +1,51 @@
+
+{% extends 'layouts.html' %}
+
+{% block body %}
+<style>
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='list.css') }}">
+	</style>
+	
+<div class="list">
+	<ul>
+ {% for po in post.items %}
+ <li x>
+<div class="card" style="display:inline-block">
+
+<div class="card-header">
+    DATE:{{ po.date }}                                                TIME:{{po.time}}
+    {% if po.status=='0' %}
+    <button type="button" class="btn btn-warning"><sub><i class="fas fa-clock" style="color:red;size:100px;"></i>
+    </sub>PENDING</button>
+    {% else %}
+      <button type="button" class="btn btn-success"><sub><i class="fas fa-check" style="color:green;size:100px;"></i>
+    </sub>COMPLETED</button>
+    {% endif %}
+    {% if po.typee=='mail' %}
+    <i style="color:blue" class="fas fa-at" >MAIL</i>
+    {% else %}
+     <i style="color:red" class="fas fa-sms" >SMS</i>
+      {% endif %}
+
+    <a href="/delete/{{po.id}}"><i class="fas fa-times" style="float:right;color:red;size:7px;"></i></a>
+  </div>
+  
+
+  <div class="card-body">
+    <h5 class="card-title">TO:{{po.to}}<a href="/detail/{{po.id}}" class="btn btn-primary" style="float:right;display:inline;">DETAILS</a></h5>
+    <p class="card-text" >SUB:{{po.sub}}</p>
+    	
+  </div>
+</div>
+</li>
+{% endfor %}
+</ul>
+{% if post.has_next %}
+	<button type="button" class="btn btn-info" style="float:right"><a href="/thread/{{post.next_num}}">NEXT-></a></button>
+	{% endif %}
+{% if post.has_prev %}
+    <button type="button" class="btn btn-info" style="float:left"><a href="/thread/{{post.prev_num}}"><-PREV</a></button>	
+{% endif %}
+</div>
+
+{% endblock %}
