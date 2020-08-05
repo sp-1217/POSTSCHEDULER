@@ -22,7 +22,7 @@ import requests
 #client = nexmo.Client(key='6539724f', secret='S3aEhM2BhLcRJlAX')
 
 
-#secret_key="rishika@123"
+#secret_key=guess it
 #for database sqlite3 sqlalchemy ORM
 #create a database
 #connect to a database
